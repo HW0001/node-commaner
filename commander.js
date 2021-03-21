@@ -1,6 +1,6 @@
 const db = require("./db.js");
 module.exports = {
-  add(value) {
+  add(value, cb) {
     db.read().then((data) => {
       let arr;
       try {
@@ -13,7 +13,7 @@ module.exports = {
         name: value,
         done: false,
       });
-      db.write(JSON.stringify(arr)).then();
+      db.write(JSON.stringify(arr)).then(() => cb());
     });
   },
 };
